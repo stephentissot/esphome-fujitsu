@@ -463,6 +463,7 @@ void FujiHeatPump::setTemp(byte t) {
     }
 }
 void FujiHeatPump::setMode(byte m) {
+    ESP_LOGI(TAG, "Setting mode");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
