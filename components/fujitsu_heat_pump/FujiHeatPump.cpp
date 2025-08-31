@@ -527,6 +527,7 @@ FujiFrame *FujiHeatPump::getCurrentState() { return &currentState; }
 
 void FujiHeatPump::setState(FujiFrame *state) {
     FujiFrame *current = this->getCurrentState();
+    ESP_LOGD(TAG, "setState");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
