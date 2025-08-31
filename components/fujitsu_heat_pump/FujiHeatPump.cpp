@@ -2,7 +2,7 @@
 
 #define DEBUG_FUJI
 #include "FujiHeatPump.h"
-#include "esp_log.h"
+/*#include "esp_log.h"*/
 #include "string.h"
 
 namespace esphome {
