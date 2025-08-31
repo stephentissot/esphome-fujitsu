@@ -259,7 +259,7 @@ void FujitsuClimate::dump_config() {
     ESP_LOGCONFIG(TAG, "Fujitsu Climate Heat Pump:");
     ESP_LOGCONFIG(TAG, "  Using uart #2");
     if (this->is_master_) {
-        ESP_LOGCONFIG(TAG, "  Running as master");
+        ESP_LOGCONFIG(TAG, "  Running as Stephen master");
     } else {
         ESP_LOGCONFIG(TAG, "  Running as secondary");
     }
