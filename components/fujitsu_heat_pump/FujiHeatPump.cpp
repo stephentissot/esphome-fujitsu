@@ -3,6 +3,9 @@
 #define DEBUG_FUJI
 #include "FujiHeatPump.h"
 /*#include "esp_log.h"*/
+#include "esphome/core/log.h"
+#include "esphome/core/helpers.h"
+
 #include "string.h"
 
 namespace esphome {
