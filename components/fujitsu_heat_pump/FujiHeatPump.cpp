@@ -1,6 +1,6 @@
 /* This file is based on unreality's FujiHeatPump project */
 
-// #define DEBUG_FUJI
+#define DEBUG_FUJI
 #include "FujiHeatPump.h"
 #include "esp_log.h"
 #include "string.h"
