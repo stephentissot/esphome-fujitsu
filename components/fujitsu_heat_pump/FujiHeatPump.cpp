@@ -11,7 +11,6 @@
 namespace esphome {
 namespace fujitsu {
 
-static const char* TAG = "FujiHeatPump";
 
 FujiFrame FujiHeatPump::decodeFrame() {
     FujiFrame ff;
