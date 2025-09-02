@@ -107,6 +107,7 @@ class FujiHeatPump {
 
    public:
     FujiHeatPump() {
+        ESP_LOGD(TAG, "Creating heatpump mutex");
         this->updateStateMutex = xSemaphoreCreateRecursiveMutex();
         this->state_dropbox = xQueueCreate(1, sizeof(FujiFrame));
     }

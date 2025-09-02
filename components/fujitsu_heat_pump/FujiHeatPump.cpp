@@ -238,10 +238,11 @@ void FujiHeatPump::connect(uart_port_t uart_port, bool secondary, int rxPin, int
     //rc = xTaskCreatePinnedToCore(heat_pump_uart_event_task, "FujiTask", 4096, (void *)this,
     //        // TODO is the priority reasonable? find & investigate the freertosconfig.h
     //                        configMAX_PRIORITIES - 1, NULL /* ignore the task handle */, 1);
+    ESP_LOGD(TAG, "Creating heatpump event task");
     rc = xTaskCreate(heat_pump_uart_event_task, "FujiTask", 4096, (void *)this,
                             12, NULL /* ignore the task handle */);
     if (rc != 0) {
-        ESP_LOGW(TAG, "Failed to create heat pump event task");
+        ESP_LOGD(TAG, "Failed to create heat pump event task");
         return;
     }
 }
@@ -449,8 +450,10 @@ void FujiHeatPump::setOnOff(bool o) {
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
+    ESP_LOGD(TAG, "setOnOff mutex ok");
     updateFields |= kOnOffUpdateMask;
     updateState.onOff = o ? 1 : 0;
+    ESP_LOGD(TAG, "setOnOff give mutex");
     if (!xSemaphoreGive(updateStateMutex)) {
         ESP_LOGW(TAG, "Failed to give update state mutex");
     }
