@@ -12,8 +12,6 @@ typedef uint8_t byte;
 namespace esphome {
 namespace fujitsu {
 
-static const char* TAG = "FujiHeatPump";
-
 const byte kModeIndex = 3;
 const byte kModeMask = 0b00001110;
 const byte kModeOffset = 1;
@@ -109,7 +107,7 @@ class FujiHeatPump {
 
    public:
     FujiHeatPump() {
-        ESP_LOGD(TAG, "Creating heatpump mutex");
+        ESP_LOGD("FujiHeatPump", "Creating heatpump mutex");
         this->updateStateMutex = xSemaphoreCreateRecursiveMutex();
         this->state_dropbox = xQueueCreate(1, sizeof(FujiFrame));
     }
