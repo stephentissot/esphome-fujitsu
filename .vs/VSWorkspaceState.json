@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\components",
-    "\\components\\fujitsu_heat_pump",
-    "\\src"
+    ""
   ],
-  "SelectedNode": "\\components\\fujitsu_heat_pump\\FujiHeatPump.cpp",
+  "SelectedNode": "\\C:\\Users\\tisste\\OneDrive\\Documents\\ProjetsElectroniques\\Fujistu-ESP32Pac\\esphome-fujitsu",
   "PreviewInSolutionExplorer": false
 }

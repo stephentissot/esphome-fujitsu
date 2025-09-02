@@ -132,6 +132,7 @@ void heat_pump_uart_event_task(void *pvParameters) {
                             if (uart_write_bytes(heatpump->uart_port, (const char*) heatpump->writeBuf, 8) != 8) {
                                 ESP_LOGW(TAG, "Failed to write state update as expected");
                             }
+                            ESP_LOGD(TAG, "uart event task");
                             if (!xSemaphoreTake(heatpump->updateStateMutex, portMAX_DELAY)) {
                                 ESP_LOGW(TAG, "Failed to take update state mutex");
                             }
@@ -333,6 +334,7 @@ bool FujiHeatPump::processReceivedFrame(bool& pendingFrame) {
             }
 
             // if we have any updates, set the flags
+            ESP_LOGD(TAG, "processReceivedFrame");
             if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
                 ESP_LOGW(TAG, "Failed to take update state mutex");
             }
@@ -454,6 +456,7 @@ void FujiHeatPump::setOnOff(bool o) {
     }
 }
 void FujiHeatPump::setTemp(byte t) {
+    ESP_LOGD(TAG, "setTemp");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
@@ -475,6 +478,7 @@ void FujiHeatPump::setMode(byte m) {
     }
 }
 void FujiHeatPump::setFanMode(byte fm) {
+    ESP_LOGD(TAG, "setFanMode");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
@@ -485,6 +489,7 @@ void FujiHeatPump::setFanMode(byte fm) {
     }
 }
 void FujiHeatPump::setEconomyMode(byte em) {
+    ESP_LOGD(TAG, "setEconomyMode");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
@@ -495,6 +500,7 @@ void FujiHeatPump::setEconomyMode(byte em) {
     }
 }
 void FujiHeatPump::setSwingMode(byte sm) {
+    ESP_LOGD(TAG, "setSwingMode");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
@@ -505,6 +511,7 @@ void FujiHeatPump::setSwingMode(byte sm) {
     }
 }
 void FujiHeatPump::setSwingStep(byte ss) {
+    ESP_LOGD(TAG, "setSwingStep");
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
     }
@@ -527,6 +534,7 @@ byte FujiHeatPump::getControllerTemp() { return currentState.controllerTemp; }
 FujiFrame *FujiHeatPump::getCurrentState() { return &currentState; }
 
 void FujiHeatPump::setState(FujiFrame *state) {
+    ESP_LOGD(TAG, "setState");
     FujiFrame *current = this->getCurrentState();
     if (!xSemaphoreTake(updateStateMutex, portMAX_DELAY)) {
         ESP_LOGW(TAG, "Failed to take update state mutex");
